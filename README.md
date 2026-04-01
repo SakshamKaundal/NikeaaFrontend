@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Nikyaa Store - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React e-commerce frontend built with TypeScript, Vite, and Apollo Client.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Product Listing** - Browse products with grid view
+- **Search & Filter** - Search by name/description, filter by price range and stock status
+- **Product Details** - View full product information
+- **Shopping Cart** - Add/remove items, update quantities, view totals
+- **Real-time Updates** - Apollo Client caches and refetches data automatically
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite (build tool)
+- Apollo Client 3 (GraphQL)
+- Lucide React (icons)
+- CSS (custom styling)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+
+- Running backend server (see backend/README.md)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Opens at http://localhost:5173
+
+### Build
+
+```bash
+npm run build
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── apollo.ts      # Apollo Client configuration
+│   └── queries.ts     # GraphQL queries & mutations
+├── components/
+│   ├── Navbar.tsx     # Navigation with cart indicator
+│   ├── ProductList.tsx # Product grid with search/filter
+│   ├── ProductCard.tsx # Individual product card
+│   ├── ProductDetail.tsx # Full product view
+│   └── Cart.tsx       # Shopping cart sidebar
+├── App.tsx            # Main app component
+├── App.css            # Component styles
+└── index.css          # Global styles
+```
+
+## API Connection
+
+The frontend connects to the GraphQL backend at `http://localhost:3000/graphql`. Update the URI in `src/lib/apollo.ts` if your backend runs on a different address.
