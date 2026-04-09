@@ -2,7 +2,16 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "verbatimModuleSyntax": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "types": ["vite/client", "jest", "node"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
+  }
 }
